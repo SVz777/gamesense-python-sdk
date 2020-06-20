@@ -6,7 +6,14 @@ app = Flask('svz')
 
 
 @app.route('/csgo_game_event', methods=['POST'])
-def test():
+def csgo():
+    data = request.get_json()
+    print(data)
+    return 'ok'
+
+
+@app.route('/dota2_game_event', methods=['POST'])
+def dota2():
     data = request.get_json()
     print(data)
     return 'ok'
