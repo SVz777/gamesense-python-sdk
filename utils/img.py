@@ -45,13 +45,19 @@ __m4 = [[0, 128, 32, 160, 8, 136, 40, 168, 2, 130, 34, 162, 10, 138, 42, 170],
         [255, 127, 223, 95, 247, 119, 215, 87, 253, 125, 221, 93, 245, 117, 213, 85]]
 
 
-def __bayer_filter(x, y, value, ft=None):
+def __bayer_filter(x, y, value, reverted=False, ft=None):
     if ft is None:
         ft = __m4
     if value > ft[x & (len(ft) - 1)][y & (len(ft) - 1)]:
-        return 255
+        if reverted:
+            return 0
+        else:
+            return 255
     else:
-        return 0
+        if reverted:
+            return 255
+        else:
+            return 0
 
 
 def __pix2binary(pixs):
@@ -71,13 +77,14 @@ def __pix2binary(pixs):
     return d
 
 
-def read_img(filename, width=128, height=36):
+def read_img(filename, width=128, height=36, *, reverted=False):
     img = Image.open(filename)
     img = img.convert('L')
     img = img.resize((width, height))
     for y in range(height):
         for x in range(width):
-            img.putpixel((x, y), __bayer_filter(x, y, img.getpixel((x, y))))
+            img.putpixel((x, y), __bayer_filter(
+                x, y, img.getpixel((x, y)), reverted))
     arr = np.asarray(img)
     l = arr.tolist()
     return __pix2binary(l)
