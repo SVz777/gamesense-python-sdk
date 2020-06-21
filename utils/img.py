@@ -67,11 +67,13 @@ def __pix2binary(pixs):
         while row:
             r, row = row[:8], row[8:]
             z = 0
+            fix = len(r)
             for x in r:
                 if x > 0:
                     z = (z << 1) + 1
                 else:
                     z = z << 1
+            z <<= 8 - fix
             t.append(z)
         d.append(t)
     return d
