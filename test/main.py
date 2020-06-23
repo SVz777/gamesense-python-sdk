@@ -4,7 +4,7 @@ from define import devices
 from game_sense import GameSense
 from handlers import screen, tactile
 
-gs = GameSense('SVZ')
+gs = GameSense('SVZ_TEST')
 gs.remove_game()
 gs.register_game('svz', developer='svz')
 
