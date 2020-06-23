@@ -672,7 +672,7 @@ def test4():
         )
     ]))
     gs.send_game_event(
-        'T3', {
+        'T4', {
             'value': 40,
         })
 

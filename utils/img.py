@@ -75,16 +75,17 @@ def __pix2binary(pixs):
                     z = z << 1
             z <<= 8 - fix
             t.append(z)
-        d.append(t)
+        d.extend(t)
     return d
 
 
-def __binary2pix(binary):
+def __binary2pix(binary, width=128, height=36):
     d = []
-    for row in binary:
+    sp = width//8
+    while binary:
         t = []
-        while row:
-            r, row = row[0], row[1:]
+        rs, binary = binary[:sp], binary[sp:]
+        for r in rs:
             z = [(255 if int(i) > 0 else 0) for i in bin(r)[2:].zfill(8)]
             t.extend(z)
         d.append(t)
