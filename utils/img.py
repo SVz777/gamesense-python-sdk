@@ -79,6 +79,18 @@ def __pix2binary(pixs):
     return d
 
 
+def __binary2pix(binary):
+    d = []
+    for row in binary:
+        t = []
+        while row:
+            r, row = row[0], row[1:]
+            z = [(255 if int(i) > 0 else 0) for i in bin(r)[2:].zfill(8)]
+            t.extend(z)
+        d.append(t)
+    return d
+
+
 def read_img(filename, width=128, height=36, *, reverted=False):
     img = Image.open(filename)
     img = img.convert('L')

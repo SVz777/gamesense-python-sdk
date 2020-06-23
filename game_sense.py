@@ -20,8 +20,6 @@ def get_props():
 
 
 class GameSense:
-    __PROPS = get_props()
-
     __PATH_GAME_METADATA = '/game_metadata'
     __PATH_REMOVE_GAME = '/remove_game'
     __PATH_GAME_HEARTBEAT = "/game_heartbeat"
@@ -34,7 +32,7 @@ class GameSense:
     def __init__(self, game):
         self.game = game
         self.__ss = requests.session()
-        self.__url = f"http://{self.__PROPS['address']}"
+        self.__url = f"http://{get_props()['address']}"
 
     def __post(self, path, data):
         return requests.post(f'{self.__url}{path}', json=data)
