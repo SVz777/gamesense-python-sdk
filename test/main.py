@@ -13,7 +13,7 @@ def test1():
     print(gs.bind_game_event('T1', handlers=[
         screen.Screen(
             devices.Screen128x36.device_type,
-            devices.Screen128x36.zone.Screen128x36,
+            devices.Screen128x36.zone.One,
             screen.StaticScreen(
                 screen.SingleLineFrame(
                     screen.TextModifiers()
@@ -31,7 +31,7 @@ def test2():
     print(gs.bind_game_event('T2', handlers=[
         screen.Screen(
             devices.Screen128x36.device_type,
-            devices.Screen128x36.zone.Screen128x36,
+            devices.Screen128x36.zone.One,
             screen.StaticScreen(
                 screen.SingleLineFrame(
                     screen.TextModifiers(suffix=' K'),
@@ -65,7 +65,7 @@ def test3():
     print(gs.bind_game_event('T3', handlers=[
         screen.Screen(
             devices.Screen128x36.device_type,
-            devices.Screen128x36.zone.Screen128x36,
+            devices.Screen128x36.zone.One,
             screen.StaticScreen(
                 screen.ImageFrame(
                     [0,
@@ -663,7 +663,7 @@ def test4():
     print(gs.bind_game_event('T4', handlers=[
         screen.Screen(
             devices.Screen128x36.device_type,
-            devices.Screen128x36.zone.Screen128x36,
+            devices.Screen128x36.zone.One,
             screen.StaticScreen(
                 screen.SingleLineFrame(
                     screen.ProgressBar()
